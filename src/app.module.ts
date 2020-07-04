@@ -1,11 +1,20 @@
-import { Module, Logger } from '@nestjs/common';
-import { AppController } from '@app/app.controller';
-import { ConfigModule, ConfigService } from '@modules';
-import { AppService } from '@services';
+import { Module } from '@nestjs/common';
+import { join } from 'path';
+import { GraphQLModule } from '@nestjs/graphql';
+import { FooModule } from '@modules';
+import { getContext } from '@libs';
 
 @Module({
-  imports: [ConfigModule],
-  controllers: [AppController],
-  providers: [AppService, ConfigService, Logger],
+  imports: [
+    FooModule,
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      definitions: {
+        path: join(__dirname, 'generated/graphql/graphql.ts'),
+        outputAs: 'class',
+      },
+      context: getContext,
+    }),
+  ],
 })
 export class AppModule {}

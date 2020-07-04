@@ -1,0 +1,8 @@
+type Foo {
+  foo: String!
+  bar: Int!
+}
+
+type  Query {
+  getFoo: Foo!
+}

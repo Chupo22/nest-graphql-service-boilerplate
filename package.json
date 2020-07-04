@@ -19,19 +19,24 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "type-coverage": "type-coverage --strict --ignore-catch --at-least 100 --ignore-files \"dist/**/*\""
+    "type-coverage": "type-coverage --strict --ignore-catch --at-least 100 --ignore-files \"dist/**/*\"",
+    "generate-typings": "npx ts-node src/generate-graphql-typings",
+    "generate-typings:watch": "nodemon --exec \"npm run generate-typings\" --watch .src/foo-service.graphql"
   },
   "dependencies": {
     "@nestjs/common": "^7.3.1",
     "@nestjs/core": "^7.3.1",
+    "@nestjs/graphql": "^7.5.1",
     "@nestjs/platform-express": "^7.3.1",
+    "apollo-server-express": "^2.15.1",
     "dotenv": "^8.2.0",
     "fp-ts": "^2.6.5",
     "io-ts": "^2.2.4",
     "io-ts-types": "^0.5.7",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "uuid": "^8.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.4.1",
@@ -41,6 +46,7 @@
     "@types/jest": "25.1.4",
     "@types/node": "^13.9.1",
     "@types/supertest": "^2.0.8",
+    "@types/uuid": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
     "eslint": "^7.1.0",

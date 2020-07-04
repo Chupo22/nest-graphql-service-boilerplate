@@ -9,6 +9,7 @@ RUN apk --no-cache add g++ gcc libgcc make python
 
 RUN npm ci
 RUN npm run build
+RUN npm run generate-typings
 RUN npm prune --production
 
 FROM node:12.16.1-alpine
